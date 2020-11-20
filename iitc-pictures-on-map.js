@@ -2,9 +2,11 @@
 // @author         sanshine
 // @name           IITC plugin: Pictures on map
 // @category       Layer
-// @version        0.1.1
+// @version        0.1.2
 // @description    Show portal pictures on the map + expand the Portals List table + improve the portal picture dialog
 // @id             portal-pictures-on-map
+// @updateURL https://raw.githubusercontent.com/san00shine/IITC-Pictures-On-Map/main/iitc-pictures-on-map.js
+// @downloadURL https://raw.githubusercontent.com/san00shine/IITC-Pictures-On-Map/main/iitc-pictures-on-map.js
 // @namespace      https://github.com/san00shine/IITC-Pictures-On-Map
 // @include https://*ingress.com/intel*
 // @include http://*ingress.com/intel*
