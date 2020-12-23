@@ -21,12 +21,14 @@ if(typeof window.plugin !== 'function') window.plugin = function() {};
 // use own namespace for plugin
 window.plugin.portalPicturesOnMap = function() {};
 
-window.plugin.portalPicturesOnMap.PICTURE_WIDTH = 80;
+window.plugin.portalPicturesOnMap.PICTURE_WIDTH = 60;
 
 window.plugin.portalPicturesOnMap.labelLayers = {};
 window.plugin.portalPicturesOnMap.labelLayerGroup = null;
 
-
+/**
+ * Remove image marker from the map.
+ */
 window.plugin.portalPicturesOnMap.removeLabel = function(guid) {
   var previousLayer = window.plugin.portalPicturesOnMap.labelLayers[guid];
   if(previousLayer) {
@@ -35,6 +37,9 @@ window.plugin.portalPicturesOnMap.removeLabel = function(guid) {
   }
 }
 
+/**
+ * Add image marker on the map.
+ */
 window.plugin.portalPicturesOnMap.addLabel = function(guid, latLng) {
   var previousLayer = window.plugin.portalPicturesOnMap.labelLayers[guid];
   if (!previousLayer) {
@@ -46,13 +51,16 @@ window.plugin.portalPicturesOnMap.addLabel = function(guid, latLng) {
       icon: L.divIcon({
         className: 'plugin-portal-pictures',
         iconAnchor: [window.plugin.portalPicturesOnMap.PICTURE_WIDTH/2,0],
-        iconSize: [window.plugin.portalPicturesOnMap.PICTURE_WIDTH,window.plugin.portalPicturesOnMap.PICTURE_WIDTH],
-        html: "<img src = \"" + portalPicture + "\" width=70%>"
+        // note that height will just be height of enclosing div, must be small for wide images
+        // note that image will overflow the div and will be clickable anyway (with too high div the div would be clickable but img would not fill the height)
+        iconSize: [window.plugin.portalPicturesOnMap.PICTURE_WIDTH,window.plugin.portalPicturesOnMap.PICTURE_WIDTH/3],
+        html: "<img src = \"" + portalPicture + "\" width=100%>"
       }),
       guid: guid,
       interactive: false
     });
     window.plugin.portalPicturesOnMap.labelLayers[guid] = label;
+    label.on('click', function() { renderPortalDetails(guid); });
     label.addTo(window.plugin.portalPicturesOnMap.labelLayerGroup);
   }
 }
@@ -72,7 +80,7 @@ window.plugin.portalPicturesOnMap.updatePortalLabels = function() {
 
   var portalPoints = {};
 
-  for (var guid in window.portals) {
+  for (let guid in window.portals) {
     var p = window.portals[guid];
     if (p._map && p.options.data.image) {  // only consider portals added to the map and with an image
       var point = map.project(p.getLatLng());
@@ -81,14 +89,14 @@ window.plugin.portalPicturesOnMap.updatePortalLabels = function() {
   }
 
   // remove any not wanted
-  for (var guid in window.plugin.portalPicturesOnMap.labelLayers) {
+  for (let guid in window.plugin.portalPicturesOnMap.labelLayers) {
     if (!(guid in portalPoints)) {
       window.plugin.portalPicturesOnMap.removeLabel(guid);
     }
   }
 
   // and add those we do
-  for (var guid in portalPoints) {
+  for (let guid in portalPoints) {
     window.plugin.portalPicturesOnMap.addLabel(guid, portals[guid].getLatLng());
   }
 }
@@ -129,7 +137,7 @@ var setup = function() {
             preview.src = img.src;
             preview.style = 'margin: auto; display: block';
 
-            picturelink = document.createElement('a');
+            var picturelink = document.createElement('a');
             picturelink.setAttribute('href', img.src + '=s0');
             picturelink.setAttribute('target', '_blank');
             picturelink.appendChild(preview);
