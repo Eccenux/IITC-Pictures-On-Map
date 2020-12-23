@@ -1,6 +1,6 @@
 ﻿// ==UserScript==
 // @author      sanshine, Eccenux
-// @name        IITC plugin: Pictures on map
+// @name        IITC plugin: Pictures on the map
 // @id          portal-pictures-on-map
 // @category    Layer
 // @namespace   pl.enux.iitc
