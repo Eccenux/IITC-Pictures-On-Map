@@ -114,6 +114,37 @@ window.plugin.portalPicturesOnMap.delayedUpdatePortalLabels = function(wait) {
   }
 }
 
+// replacement for portallist dialog open
+// this just changes default sort
+function displayPL() {
+  var list;
+  // plugins (e.g. bookmarks) can insert fields before the standard ones - so we need to search for the 'level' column
+  window.plugin.portalslist.sortBy = window.plugin.portalslist.fields.map(function(f){return f.title;}).indexOf('Portal Name');
+  window.plugin.portalslist.sortOrder = -1;
+  window.plugin.portalslist.enlP = 0;
+  window.plugin.portalslist.resP = 0;
+  window.plugin.portalslist.neuP = 0;
+  window.plugin.portalslist.filter = 0;
+
+  if (window.plugin.portalslist.getPortals()) {
+    list = window.plugin.portalslist.portalTable(window.plugin.portalslist.sortBy, window.plugin.portalslist.sortOrder,window.plugin.portalslist.filter);
+  } else {
+    list = $('<table class="noPortals"><tr><td>Nothing to show!</td></tr></table>');
+  };
+
+  if(window.useAndroidPanes()) {
+    $('<div id="portalslist" class="mobile">').append(list).appendTo(document.body);
+  } else {
+    dialog({
+      html: $('<div id="portalslist">').append(list),
+      dialogClass: 'ui-dialog-portalslist',
+      title: 'Portal list: ' + window.plugin.portalslist.listPortals.length + ' ' + (window.plugin.portalslist.listPortals.length == 1 ? 'portal' : 'portals'),
+      id: 'portal-list',
+      width: 700,
+    });
+  }
+}
+
 
 var setup = function() {
 
@@ -154,16 +185,29 @@ var setup = function() {
     window.setupLargeImagePreviewOverwrite();
 
     //if the "Portals List" plugin is installed, insert an extra column with the portal photos
-    item = {
-        title: "Portal Picture",
-        value: function(portal) { return portal.options.data.image; },
-        format: function(cell, portal, value) {
-            $(cell)
-                .append("<img src=\"" + value + "\" width=110%>");
-        }
-    }
     if (window.plugin.portalslist) {
+        let item = {
+            title: "Portal Picture",
+            value: function(portal) { return portal.options.data.image; },
+            format: function(cell, portal, value) {
+                $(cell)
+                    .append("<img src=\"" + value + "\" width=100%>");
+            }
+        }
+        // insert picture item
         window.plugin.portalslist.fields.splice(1, 0, item);
+
+        // replace displayPL impl
+        window.plugin.portalslist.displayPL = displayPL;
+
+        // remove some items (to make the image wider)
+        let fields = window.plugin.portalslist.fields
+        let removeMe = ['Team', 'Health', 'Links', 'Fields', 'AP']
+        for (let i=0; i<removeMe.length; i++) {
+            let title = removeMe[i];
+            let index = fields.map(f=>f.title).indexOf(title);
+            fields.splice(index, 1);
+        }
     }
 
 }
