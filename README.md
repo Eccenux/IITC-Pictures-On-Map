@@ -1,18 +1,12 @@
 # IITC-Pictures-On-Map
-Makes it easier to view the portal pictures in an area
 
+Makes it easier to view the portal pictures in an area.
 
-## Description
-This is an IITC plugin that makes it easier to browse the photos of multiple portals in an area  
-
-* Ingress - a mobile game developed by Niantic
-* Intel Map - intel.ingress.com , the official online map of the world of Ingress
-* Portals - Ingress points-of-interest (known as pokestops/pokegyms in Pokemon GO)
-* IITC - a community-created extension of the Intel Map; it supports a Javascript-based plugin system; this plugin is written for the IITC-CE version (https://iitc.app/)  
-
+Note! This plugin puts heavy load on your network. Don't enable pictures layer unless you need to.
 
 ## Installing
-If you have IITC installed, simply clicking on https://github.com/san00shine/IITC-Pictures-On-Map/raw/main/iitc-pictures-on-map.user.js should install the plugin on dekstop browsers. The plugin has not been tested on mobiles.  
+
+Assuming you already have IITC just &rarr; **[install the script](https://github.com/Eccenux/IITC-Pictures-On-Map/raw/master/iitc-pictures-on-map.user.js)**.
 
 
 ## What does it do?
@@ -25,7 +19,7 @@ If you have IITC installed, simply clicking on https://github.com/san00shine/IIT
 
 ### 2. Display portal pictures in the Portals List
 
-You need the "Portals List" plugin (https://iitc.app/download_desktop.html#portals-list_bqy_teo96_release) for this to work.
+You will need the [Show List Of Portals plugin](https://iitc.me/desktop/#plugin-portals-list) for this to work.
 
 ![Portals List](https://user-images.githubusercontent.com/14035139/99875005-c316d480-2bf4-11eb-9b36-a140aaff26bf.png)
 

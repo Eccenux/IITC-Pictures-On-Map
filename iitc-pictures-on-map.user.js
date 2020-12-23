@@ -1,20 +1,16 @@
 // ==UserScript==
-// @author         sanshine
-// @name           IITC plugin: Pictures on map
-// @category       Layer
-// @version        0.1.2
-// @description    Show portal pictures on the map + expand the Portals List table + improve the portal picture dialog
-// @id             portal-pictures-on-map
-// @updateURL https://raw.githubusercontent.com/san00shine/IITC-Pictures-On-Map/main/iitc-pictures-on-map.js
-// @downloadURL https://raw.githubusercontent.com/san00shine/IITC-Pictures-On-Map/main/iitc-pictures-on-map.js
-// @namespace      https://github.com/san00shine/IITC-Pictures-On-Map
-// @include https://*ingress.com/intel*
-// @include http://*ingress.com/intel*
-// @match https://*ingress.com/intel*
-// @match http://*ingress.com/intel*
-// @match https://intel.ingress.com/*
-// @match http://intel.ingress.com/*
-// @grant          none
+// @author      sanshine, Eccenux
+// @name        IITC plugin: Pictures on map
+// @id          portal-pictures-on-map
+// @category    Layer
+// @namespace   pl.enux.iitc
+// @version     0.2.0
+// @description [0.2.0] Show portal pictures on the map + expand the Portals List table + improve the portal picture dialog
+// @match       https://*.ingress.com/intel*
+// @match       http://*.ingress.com/intel*
+// @grant       none
+// @updateURL   https://github.com/Eccenux/IITC-Pictures-On-Map/raw/main/iitc-pictures-on-map.meta.js
+// @downloadURL https://github.com/Eccenux/IITC-Pictures-On-Map/raw/main/iitc-pictures-on-map.user.js
 // ==/UserScript==
 
 function wrapper(plugin_info) {
