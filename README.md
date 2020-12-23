@@ -6,7 +6,7 @@ Note! This plugin puts heavy load on your network. Don't enable pictures layer u
 
 ## Installing
 
-Assuming you already have IITC just &rarr; **[install the script](https://github.com/Eccenux/IITC-Pictures-On-Map/raw/master/iitc-pictures-on-map.user.js)**.
+Assuming you already have IITC just &rarr; **[install the script](https://github.com/Eccenux/IITC-Pictures-On-Map/raw/main/iitc-pictures-on-map.user.js)**.
 
 
 ## What does it do?
